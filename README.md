@@ -1,30 +1,41 @@
 # DFS
-#include<stdio.h>
-void DFS(int);
-int G[10][10],visited[10],n;    
-void main()
+include <stdio.h>
+#define max 20
+int visited[max],a[10][10],n;
+void dfs(int v)
 {
-    int i,j;
-    printf("Enter number of vertices:");
-scanf("%d",&n);
-printf("\nEnter adjecency matrix of the graph:");
-for(i=0;i<n;i++)
-       for(j=0;j<n;j++)
-scanf("%d",&G[i][j]);
-for(i=0;i<n;i++)
+    printf("%d ",v);
+    visited[v]=1;
+    for(int i=1;i<=n;i++)
+    {
+        if(a[v][i]==1&& visited[i]==0)
+        {
+            dfs(i);
+        }
+    }
+}
+int main()
+{
+    int v;
+    printf("enter the size of the augmented matrix: ");
+    scanf("%d",&n);
+    printf("\n enter the elements in the matrix: \n");
+    for (int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=n;j++)
+        {
+            scanf("%d",&a[i][j]);
+        }
+    }
+    printf("enter the v value\n");
+    scanf("%d",&v);
+    for(int i=0;i<n;i++)
+    {
         visited[i]=0;
-    DFS(0);
+    }
+    dfs(v);
+    return 0;
 }
-void DFS(int i)
-{
-    int j;
-printf("\n%d",i);
-    visited[i]=1;
-for(j=0;j<n;j++)
-       if(!visited[j]&&G[i][j]==1)
-            DFS(j);
-}
-
 OUTPUT:
 Enter number of vertices:5
 Enter adjecency matrix of the graph: 0 0 1 0 1
